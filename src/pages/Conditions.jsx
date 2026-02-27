@@ -1,6 +1,33 @@
-export default function Conditions () {
-    return (
-        <div>
+import "../css/accueil.css";
+import { useEffect, useState } from "react";
+
+export default function Conditions() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShow(window.scrollY > 200);
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const handleScrollTop = (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <div id="top">
+      {show && (
+        <a
+          href="#top"
+          className="scrollTop"
+          onClick={handleScrollTop}
+          aria-label="Retour en haut"
+        >
+          ↑
+        </a>
+      )}
             <p className= "text-light">
 CONDITIONS GÉNÉRALES DE VENTE
  

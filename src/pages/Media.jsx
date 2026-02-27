@@ -6,6 +6,7 @@ export default function Media() {
   const [data, setData] = useState([])
   const [loaded, setLoaded] = useState(false)
   const [error, setError] = useState(null)
+  const [showButton, setShowButton] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -19,18 +20,51 @@ export default function Media() {
         setLoaded(true)
       }
     }
+
     fetchData()
-  }, []) // ✅ bien fermer la parenthèse et le crochet ici
+
+    // 👇 détecter scroll
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowButton(true)
+      } else {
+        setShowButton(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  // 👇 fonction scroll top
+  const handleScrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
+  }
 
   if (!loaded) return <p>En cours de chargement...</p>
   if (error) return <p>{error.message}</p>
 
   return (
     <section className="media-gallery">
+      
+      {showButton && (
+        <button 
+          className="scrollTop"
+          onClick={handleScrollTop}
+          aria-label="Retour en haut"
+        >
+          ↑
+        </button>
+      )}
+
       {data.length > 0 ? (
         data.map((image) => (
           <div key={image._id} className="media-item">
-            <img src={image.url} /> {/* ✅ utiliser image.url */}
+            <img src={image.url} alt="" />
           </div>
         ))
       ) : (

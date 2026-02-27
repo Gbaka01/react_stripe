@@ -16,6 +16,9 @@ const navigate = useNavigate()
         <li className="nav-item">
           <a className="nav-link active" aria-current="page" onClick={() => navigate('/')}>Accueil</a>
         </li>
+         <li className="nav-item">
+          <a className="nav-link" onClick={() => navigate('/Apropos')}>A propos</a>
+        </li>
         <li className="nav-item">
           <a className="nav-link" onClick={() => navigate('/panier')}>Panier</a>
         </li>
@@ -35,6 +38,9 @@ const navigate = useNavigate()
         </li>
            <li className="nav-item">
           <a className="nav-link" onClick={() => navigate('/conditions')}>Conditions generales de vente</a>
+        </li>
+              <li className="nav-item">
+          <a className="nav-link" onClick={() => navigate('/contact')}>Contact</a>
         </li>
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

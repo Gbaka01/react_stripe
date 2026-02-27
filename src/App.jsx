@@ -15,6 +15,8 @@ import FormRegister from './pages/FormRegister';
 import Mentions from "./pages/Mentions";
 import Footer from "./components/Footer";
 import Conditions from "./pages/Conditions";
+import Contact from "./pages/Contact";
+import Apropos from "./pages/Apropos";
 export default function App() {
 
   return (
@@ -32,6 +34,8 @@ export default function App() {
         <Route path="/article/:id" element={<Article />}/>
         <Route path="/mentions"    element={<Mentions />}/>
         <Route path="/conditions" element={<Conditions />}/>
+        <Route path="/contact" element={<Contact />}/>
+        <Route path="/Apropos" element={<Apropos />}/>
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -18,8 +18,8 @@ img {
     width: 100%;
 }
 
-section button{
-    width: 100%;
+section button:not(.scrollTop) {
+  width: 100%;
     background-color: blue;
     color: white;
     border: none;
@@ -31,6 +31,27 @@ section button{
 li * {
     color: black;
 }
+.media-gallery{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.media-item{
+  width: 30%;
+  border: 1px solid grey;
+  padding: 0.5rem;
+}
+
+.media-item img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Scroll top */
 .scrollTop{
   position: fixed;
   right: 20px;
@@ -43,19 +64,20 @@ li * {
   justify-content: center;
   background: #111;
   color: #fff;
-  text-decoration: none;
+  border: none;
   font-size: 22px;
   z-index: 9999;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
   cursor: pointer;
 }
-.scrollTop:hover{
-  transform: translateY(-2px);
-}
-.pdf{
-  width: 100%;
-  height: 80vh; /* ou 700px */
-  border: 0;
-  display: block;
+
+/* Animation */
+.fade-in{
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeInUp 800ms ease forwards; /* un peu plus long pour voir */
+  will-change: opacity, transform;
 }
 
+@keyframes fadeInUp{
+  to{ opacity: 1; transform: translateY(0); }
+}

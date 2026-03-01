@@ -8,6 +8,8 @@ export default function Media() {
   const [error, setError] = useState(null);
   const [showButton, setShowButton] = useState(false);
 
+  const [selectedImage, setSelectedImage] = useState(null); // 👈 nouveau state
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -27,7 +29,19 @@ export default function Media() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    // fermeture avec ESC
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setSelectedImage(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   const handleScrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -38,7 +52,7 @@ export default function Media() {
   return (
     <section className="media-gallery">
       {showButton && (
-        <button className="scrollTop" onClick={handleScrollTop} aria-label="Retour en haut">
+        <button className="scrollTop" onClick={handleScrollTop}>
           ↑
         </button>
       )}
@@ -50,11 +64,29 @@ export default function Media() {
             className="media-item fade-in"
             style={{ animationDelay: `${index * 800}ms` }}
           >
-            <img src={image.url} alt={image.title || "image"} loading="lazy" />
+            <img
+              src={image.url}
+              alt={image.title || "image"}
+              loading="lazy"
+              onClick={() => setSelectedImage(image.url)} // 👈 clic
+            />
           </div>
         ))
       ) : (
         <p>Rien à afficher</p>
+      )}
+
+      {/* 👇 MODAL LIGHTBOX */}
+      {selectedImage && (
+        <div className="lightbox" onClick={() => setSelectedImage(null)}>
+          <span className="close">&times;</span>
+          <img
+            className="lightbox-content"
+            src={selectedImage}
+            alt="Agrandissement"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
       )}
     </section>
   );

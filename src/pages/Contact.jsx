@@ -38,7 +38,7 @@ export default function Contact() {
     <section className="contact">
   <form onSubmit={onSubmit}>
     <div className="form-container">
-      <h2>Contact Formulaire</h2>
+      <h2>Formulaire de contact</h2>
 
       <div className="input-box">
         <label htmlFor="name">Nom</label>

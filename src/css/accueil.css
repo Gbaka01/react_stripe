@@ -52,24 +52,26 @@ li * {
 }
 
 /* Scroll top */
-.scrollTop{
+.scrollTop {
   position: fixed;
-  right: 20px;
-  bottom: 20px;
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
+  right: 18px;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #111;
-  color: #fff;
-  border: none;
   font-size: 22px;
-  z-index: 9999;
-  cursor: pointer;
-}
+  text-decoration: none;
+  z-index: 99999;
 
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
 /* Animation */
 .fade-in{
   opacity: 0;

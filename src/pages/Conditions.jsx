@@ -2,12 +2,12 @@ import "../css/accueil.css";
 import { useEffect, useState } from "react";
 
 export default function Conditions() {
-  const [show, setShow] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 200);
+    const onScroll = () => setShowScrollTop(window.scrollY > 200);
     window.addEventListener("scroll", onScroll);
-    onScroll();
+    onScroll(); // initialise au chargement
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -17,16 +17,18 @@ export default function Conditions() {
   };
 
   return (
-    <div id="top">
-      {show && (
-        <a
-          href="#top"
+    <div>
+      {/* ✅ afficher seulement si on a scroll */}
+      {showScrollTop && (
+        <button
+          type="button"
           className="scrollTop"
           onClick={handleScrollTop}
           aria-label="Retour en haut"
+          title="Retour en haut"
         >
           ↑
-        </a>
+        </button>
       )}
             <p className= "text-light">
 CONDITIONS GÉNÉRALES DE VENTE

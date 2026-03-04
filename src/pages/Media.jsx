@@ -8,7 +8,7 @@ export default function Media() {
   const [error, setError] = useState(null);
   const [showButton, setShowButton] = useState(false);
 
-  const [selectedImage, setSelectedImage] = useState(null); // 👈 nouveau state
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -29,13 +29,9 @@ export default function Media() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
-    // fermeture avec ESC
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        setSelectedImage(null);
-      }
+      if (e.key === "Escape") setSelectedImage(null);
     };
-
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
@@ -51,8 +47,15 @@ export default function Media() {
 
   return (
     <section className="media-gallery">
+      {/* ✅ afficher seulement si on a scroll */}
       {showButton && (
-        <button className="scrollTop" onClick={handleScrollTop}>
+        <button
+          type="button"
+          className="scrollTop"
+          onClick={handleScrollTop}
+          aria-label="Retour en haut"
+          title="Retour en haut"
+        >
           ↑
         </button>
       )}
@@ -60,7 +63,7 @@ export default function Media() {
       {data.length > 0 ? (
         data.map((image, index) => (
           <div
-            key={image._id}
+            key={image._id || index}
             className="media-item fade-in"
             style={{ animationDelay: `${index * 800}ms` }}
           >
@@ -68,7 +71,7 @@ export default function Media() {
               src={image.url}
               alt={image.title || "image"}
               loading="lazy"
-              onClick={() => setSelectedImage(image.url)} // 👈 clic
+              onClick={() => setSelectedImage(image.url)}
             />
           </div>
         ))
@@ -79,7 +82,9 @@ export default function Media() {
       {/* 👇 MODAL LIGHTBOX */}
       {selectedImage && (
         <div className="lightbox" onClick={() => setSelectedImage(null)}>
-          <span className="close">&times;</span>
+          <span className="close" aria-label="Fermer">
+            &times;
+          </span>
           <img
             className="lightbox-content"
             src={selectedImage}

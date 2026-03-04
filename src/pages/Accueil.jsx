@@ -52,11 +52,17 @@ export default function Accueil() {
   return (
     <section id="top">
       {/* ✅ visible seulement quand on a scrollé */}
+      {/* ✅ afficher seulement si on a scroll */}
       {showScrollTop && (
-        <a href="#top" className="scrollTop" onClick={handleScrollTop} aria-label="Retour en haut">
+        <button
+          type="button"
+          className="scrollTop"
+          onClick={handleScrollTop}
+          aria-label="Retour en haut"
+          title="Retour en haut"
+        >
           ↑
-        </a>
-      )}
+        </button>)}
 
       {data.length > 0 ? (
         data.map((manga) => {

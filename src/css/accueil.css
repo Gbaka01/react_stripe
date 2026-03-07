@@ -130,3 +130,7 @@ li * {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+footer a:hover svg,
+footer a:focus svg {
+  transform: scale(1.15);
+}

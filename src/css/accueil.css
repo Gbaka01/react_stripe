@@ -134,3 +134,6 @@ footer a:hover svg,
 footer a:focus svg {
   transform: scale(1.15);
 }
+footer svg {
+  transition: transform 0.2s ease;
+}

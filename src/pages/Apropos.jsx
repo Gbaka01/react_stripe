@@ -13,7 +13,7 @@ Sa démarche actuelle se distingue par une réinterprétation minimaliste de th�
 Entre académisme et expression sensible, Gore Gbaka Goli cherche à capter la lumière pour en faire le vecteur principal des émotions. La simplicité du geste souligne ainsi la profondeur des scènes bibliques ou historiques, transformant chaque ligne en une quête de clarté et de ressenti.
            </p> 
            <div className="card m-5 col-8">
-           <iframe className="pdf" src="/certification_gore-gbaka-goli_559.pdf" title="PDF"></iframe>
+           <iframe className="pdf" src="/certification_gore-gbaka-goli_11689.pdf" title="PDF"></iframe>
            </div>
             </div>
     )

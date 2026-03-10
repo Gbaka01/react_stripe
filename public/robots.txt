@@ -1,4 +1,15 @@
 User-agent: *
+
+# Autoriser l'indexation
 Allow: /
 
+# Bloquer pages techniques
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+
+# Bloquer paramètres
+Disallow: /*?*
+
+# Sitemap
 Sitemap: https://dessinsgore.fr/sitemap.xml

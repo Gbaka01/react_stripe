@@ -17,7 +17,7 @@ const navigate = useNavigate()
           <a className="nav-link active" aria-current="page" onClick={() => navigate('/')}>Accueil</a>
         </li>
          <li className="nav-item">
-          <a className="nav-link" onClick={() => navigate('/Apropos')}>A propos</a>
+          <a className="nav-link" onClick={() => navigate('/a-propos')}>A propos</a>
         </li>
         <li className="nav-item">
           <a className="nav-link" onClick={() => navigate('/panier')}>Panier</a>

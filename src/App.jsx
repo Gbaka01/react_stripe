@@ -35,7 +35,7 @@ export default function App() {
         <Route path="/mentions"    element={<Mentions />}/>
         <Route path="/conditions" element={<Conditions />}/>
         <Route path="/contact" element={<Contact />}/>
-        <Route path="/Apropos" element={<Apropos />}/>
+        <Route path="/a-propos" element={<Apropos />}/>
       </Routes>
       <Footer />
     </BrowserRouter>

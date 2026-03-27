@@ -71,7 +71,7 @@ export default function Media() {
               src={image.url}
               alt={image.title || "image"}
               loading="lazy"
-              onClick={() => setSelectedImage(image.url)}
+              onClick={() => setSelectedImage(image)}
             />
           </div>
         ))
@@ -80,19 +80,24 @@ export default function Media() {
       )}
 
       {/* 👇 MODAL LIGHTBOX */}
-      {selectedImage && (
-        <div className="lightbox" onClick={() => setSelectedImage(null)}>
-          <span className="close" aria-label="Fermer">
-            &times;
-          </span>
-          <img
-            className="lightbox-content"
-            src={selectedImage}
-            alt="Agrandissement"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+{selectedImage && (
+  <div className="lightbox" onClick={() => setSelectedImage(null)}>
+    <span className="close" aria-label="Fermer">
+      &times;
+    </span>
+
+    <img
+      className="lightbox-content"
+      src={selectedImage.url?.replace("http://", "https://")}
+      alt={selectedImage.alt || "image"}
+      onClick={(e) => e.stopPropagation()}
+    />
+
+    <p className="text-center text-white mt-2">
+      {selectedImage.alt || "Sans titre"}
+    </p>
+  </div>
+)}
     </section>
   );
 }

@@ -94,7 +94,7 @@ export default function Media() {
     />
 
     <p className="text-center text-white mt-2">
-      {selectedImage.alt || "Sans titre"}
+      {selectedImage.alt || "Sans titre"}, crayon sur papier
     </p>
   </div>
 )}

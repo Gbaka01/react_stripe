@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 import Conditions from "./pages/Conditions";
 import Contact from "./pages/Contact";
 import Apropos from "./pages/Apropos";
+import Galerie from './pages/Galerie';
 export default function App() {
 
   return (
@@ -24,7 +25,8 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Accueil />}/>
+        <Route path="/" element={<Accueil />}/>         
+        <Route path="/galerie" element={<Galerie />}/>
         <Route path="/panier" element={<Panier />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<FormRegister />}/>

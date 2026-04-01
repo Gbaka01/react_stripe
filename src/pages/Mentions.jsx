@@ -1,3 +1,4 @@
+import "../css/accueil.css";
 export default function Mentions() {
   return (
     <section className="container py-5 text-light">

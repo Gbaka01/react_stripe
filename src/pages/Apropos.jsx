@@ -1,5 +1,4 @@
 import "../css/accueil.css";
-
 export default function Apropos() {
   return (
     <section className="container py-5 text-light">

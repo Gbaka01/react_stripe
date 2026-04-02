@@ -91,7 +91,7 @@ export default function Panier() {
           </ul>
 
           <button onClick={handlePay} className="btn btn-primary mt-3">
-            💳 Payer avec Stripe
+            💳 Acheter
           </button>
         </>
       ) : (

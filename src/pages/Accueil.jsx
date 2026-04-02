@@ -37,7 +37,8 @@ export default function Accueil() {
         </button>
       )}   
       <h1 className="text-light text-center">Goli Gore Gbaka – Dessins contemporains</h1>
-      <h1 className="text-light text-center">Le corps, la tension, l’émotion brute</h1>
+      <h1 className="text-light text-center">Une exploration du corps, de la tension et de l’émotion brute.</h1>
+      <h1 className="text-light text-center">Entre figuration et déformation, chaque œuvre interroge la fragilité humaine.</h1>
 
       <div
         id="carouselExampleAutoplaying"

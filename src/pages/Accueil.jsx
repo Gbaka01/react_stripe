@@ -1,10 +1,10 @@
 import "../css/accueil.css";
 import { useEffect, useState } from "react";
+import api from "../lib/axios.jsx";
 
 export default function Accueil() {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Chatbot
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
@@ -27,37 +27,31 @@ export default function Accueil() {
   };
 
   const sendMessage = async () => {
-    if (!message.trim()) return;
+    const cleanMessage = message.trim();
+    if (!cleanMessage) return;
 
-    const userMessage = {
-      sender: "Vous",
-      text: message,
-    };
+    setMessages((prev) => [
+      ...prev,
+      { sender: "Vous", text: cleanMessage },
+    ]);
 
-    setMessages((prev) => [...prev, userMessage]);
+    setMessage("");
 
     try {
-      const response = await fetch(
-        "https://votre-api.com/chatbot",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ message }),
-        }
-      );
-
-      const data = await response.json();
+      const response = await api.post("/chatbot", {
+        message: cleanMessage,
+      });
 
       setMessages((prev) => [
         ...prev,
         {
           sender: "Bot",
-          text: data.reply,
+          text: response.data.reply || "Je n'ai pas compris votre message.",
         },
       ]);
     } catch (error) {
+      console.error(error);
+
       setMessages((prev) => [
         ...prev,
         {
@@ -66,13 +60,16 @@ export default function Accueil() {
         },
       ]);
     }
+  };
 
-    setMessage("");
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
   };
 
   return (
     <>
-      {/* Chatbot */}
       <div id="chatbox" className="chatbox">
         <div id="messages" className="messages">
           {messages.map((msg, index) => (
@@ -88,6 +85,7 @@ export default function Accueil() {
             placeholder="Votre message..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
 
           <button type="button" onClick={sendMessage}>
@@ -96,7 +94,6 @@ export default function Accueil() {
         </div>
       </div>
 
-      {/* Bouton retour en haut */}
       {showScrollTop && (
         <button
           type="button"
@@ -121,7 +118,6 @@ export default function Accueil() {
         Entre figuration et déformation, chaque œuvre interroge la fragilité humaine.
       </h2>
 
-      {/* Carousel Bootstrap */}
       <div
         id="carouselExampleAutoplaying"
         className="carousel slide"

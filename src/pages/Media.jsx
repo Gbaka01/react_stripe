@@ -85,6 +85,7 @@ export default function Media() {
     <span className="close" aria-label="Fermer">
       &times;
     </span>
+    
 
     <img
       className="lightbox-content"

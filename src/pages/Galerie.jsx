@@ -84,9 +84,7 @@ export default function Galerie() {
         <p>Rien à afficher</p>
       )}
 
-      <a href="https://amzn.to/4awG3ds" target="_blank" rel="noreferrer">
-        Lien pour acheter vers Amazon
-      </a>
+
     </section>
   );
 }

@@ -4,9 +4,9 @@ import api from "../lib/axios.jsx";
 
 export default function Accueil() {
   const [showScrollTop, setShowScrollTop] = useState(false);
-
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -21,14 +21,14 @@ export default function Accueil() {
     };
   }, []);
 
-  const handleScrollTop = (e) => {
-    e.preventDefault();
+  const handleScrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const sendMessage = async () => {
     const cleanMessage = message.trim();
-    if (!cleanMessage) return;
+
+    if (!cleanMessage || loading) return;
 
     setMessages((prev) => [
       ...prev,
@@ -36,6 +36,7 @@ export default function Accueil() {
     ]);
 
     setMessage("");
+    setLoading(true);
 
     try {
       const response = await api.post("/chatbot", {
@@ -46,24 +47,32 @@ export default function Accueil() {
         ...prev,
         {
           sender: "Bot",
-          text: response.data.reply || "Je n'ai pas compris votre message.",
+          text: response.data?.reply || "Je n'ai pas compris votre message.",
         },
       ]);
     } catch (error) {
-      console.error(error);
+      console.error("Erreur complète :", error);
+      console.error("Réponse serveur :", error.response?.data);
+      console.error("Status :", error.response?.status);
 
       setMessages((prev) => [
         ...prev,
         {
           sender: "Bot",
-          text: "Erreur de connexion au serveur.",
+          text:
+            error.response?.data?.message ||
+            error.response?.data?.reply ||
+            "Erreur de connexion au serveur.",
         },
       ]);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
+      e.preventDefault();
       sendMessage();
     }
   };
@@ -73,7 +82,7 @@ export default function Accueil() {
       <div id="chatbox" className="chatbox">
         <div id="messages" className="messages">
           {messages.map((msg, index) => (
-            <p key={index}>
+            <p key={`${msg.sender}-${index}`}>
               <strong>{msg.sender} :</strong> {msg.text}
             </p>
           ))}
@@ -86,10 +95,11 @@ export default function Accueil() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDown}
+            disabled={loading}
           />
 
-          <button type="button" onClick={sendMessage}>
-            Envoyer
+          <button type="button" onClick={sendMessage} disabled={loading}>
+            {loading ? "Envoi..." : "Envoyer"}
           </button>
         </div>
       </div>
@@ -115,7 +125,8 @@ export default function Accueil() {
       </h2>
 
       <h2 className="text-light text-center">
-        Entre figuration et déformation, chaque œuvre interroge la fragilité humaine.
+        Entre figuration et déformation, chaque œuvre interroge la fragilité
+        humaine.
       </h2>
 
       <div

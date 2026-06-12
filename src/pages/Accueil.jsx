@@ -1,5 +1,6 @@
 import "../css/accueil.css";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import api from "../lib/axios.jsx";
 
 export default function Accueil() {
@@ -39,7 +40,7 @@ export default function Accueil() {
     setLoading(true);
 
     try {
-      const response = await api.post("/chatbot", {
+      const response = await axios.post("https://node-stripe-deploy-4.onrender.com/chatbot", {
         message: cleanMessage,
       });
 

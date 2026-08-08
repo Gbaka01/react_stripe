@@ -40,7 +40,7 @@ export default function Accueil() {
     setLoading(true);
 
     try {
-      const response = await axios.post("https://node-stripe-deploy-4.onrender.com/chatbot", {
+      const response = await axios.post("https://node-stripe-deploy-6.onrender.com/chatbot", {
         message: cleanMessage,
       });
 

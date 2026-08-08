@@ -7,6 +7,8 @@ export default function FormImage() {
   const [alt, setAlt] = useState('')
   const [file, setFile] = useState(null)
   const [error, setError] = useState(null)
+  const [image, setImage] = useState(null);
+
   const navigate = useNavigate()
 
   async function handleSubmit(e) {

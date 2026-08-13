@@ -1,60 +1,134 @@
-import { useNavigate } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
+export default function Header() {
+  const isLoggedIn = Boolean(localStorage.getItem("token"));
 
-export default function Header  () {
-const navigate = useNavigate()
-    return (
+  const getNavLinkClass = ({ isActive }) =>
+    `nav-link${isActive ? " active" : ""}`;
+
+  return (
     <header>
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div className="container-fluid">
-    <a className="navbar-brand" onClick={() => navigate('/')}>Dessins de goré</a>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" onClick={() => navigate('/galerie')}>Galerie</a>
-        </li>
-         <li className="nav-item">
-          <a className="nav-link" onClick={() => navigate('/a-propos')}>A propos</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" onClick={() => navigate('/panier')}>Panier</a>
-        </li>
-         
-          <li className="nav-item">
-          <a className="nav-link" onClick={() => navigate('/login')}>Connexion</a>
-        </li>
-          <li className="nav-item">
-          <a className="nav-link" onClick={() => navigate('/register')}>S'inscrire</a>
-        </li>
-        
-          <li className="nav-item">
-          <a className="nav-link" onClick={() => navigate('/media')}>Media</a>
-        </li>
-           <li className="nav-item">
-          <a className="nav-link" onClick={() => navigate('/mentions')}>Mentions legales</a>
-        </li>
-           <li className="nav-item">
-          <a className="nav-link" onClick={() => navigate('/conditions')}>Conditions generales de vente</a>
-        </li>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container-fluid">
+          <NavLink className="navbar-brand" to="/">
+            Dessins de Goré
+          </NavLink>
+
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Afficher ou masquer la navigation"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+
+          <div
+            className="collapse navbar-collapse"
+            id="navbarSupportedContent"
+          >
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-          <a className="nav-link" onClick={() => navigate('/contact')}>Contact</a>
-        </li>
-        <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Ajouter
-          </a>
-          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a className="dropdown-item" onClick={() => navigate('/addarticle')}>Ajouter un article</a></li>
-            <li><a className="dropdown-item" onClick={() => navigate('/addimage')}>Ajouter une image</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-            </header>
-    )
+                <NavLink className={getNavLinkClass} to="/galerie">
+                  Galerie
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink className={getNavLinkClass} to="/a-propos">
+                  À propos
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink className={getNavLinkClass} to="/panier">
+                  Panier
+                </NavLink>
+              </li>
+
+              {!isLoggedIn && (
+                <>
+                  <li className="nav-item">
+                    <NavLink className={getNavLinkClass} to="/login">
+                      Connexion
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item">
+                    <NavLink className={getNavLinkClass} to="/register">
+                      S’inscrire
+                    </NavLink>
+                  </li>
+                </>
+              )}
+
+              <li className="nav-item">
+                <NavLink className={getNavLinkClass} to="/media">
+                  Médias
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink className={getNavLinkClass} to="/mentions">
+                  Mentions légales
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink className={getNavLinkClass} to="/conditions">
+                  Conditions générales de vente
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink className={getNavLinkClass} to="/contact">
+                  Contact
+                </NavLink>
+              </li>
+
+              {isLoggedIn && (
+                <li className="nav-item dropdown">
+                  <button
+                    type="button"
+                    className="nav-link dropdown-toggle btn btn-link"
+                    id="navbarDropdown"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Ajouter
+                  </button>
+
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <li>
+                      <NavLink
+                        className="dropdown-item"
+                        to="/addarticle"
+                      >
+                        Ajouter un article
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        className="dropdown-item"
+                        to="/addimage"
+                      >
+                        Ajouter une image
+                      </NavLink>
+                    </li>
+                  </ul>
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+  );
 }

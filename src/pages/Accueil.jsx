@@ -80,30 +80,6 @@ export default function Accueil() {
 
   return (
     <>
-      <div id="chatbox" className="chatbox">
-        <div id="messages" className="messages">
-          {messages.map((msg, index) => (
-            <p key={`${msg.sender}-${index}`}>
-              <strong>{msg.sender} :</strong> {msg.text}
-            </p>
-          ))}
-        </div>
-
-        <div className="chat-input">
-          <input
-            type="text"
-            placeholder="Votre message..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            onKeyDown={handleKeyDown}
-            disabled={loading}
-          />
-
-          <button type="button" onClick={sendMessage} disabled={loading}>
-            {loading ? "Envoi..." : "Envoyer"}
-          </button>
-        </div>
-      </div>
 
       {showScrollTop && (
         <button

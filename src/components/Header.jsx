@@ -49,8 +49,6 @@ export default function Header() {
                 </NavLink>
               </li>
 
-              {!isLoggedIn && (
-                <>
                   <li className="nav-item">
                     <NavLink className={getNavLinkClass} to="/login">
                       Connexion
@@ -62,8 +60,7 @@ export default function Header() {
                       S’inscrire
                     </NavLink>
                   </li>
-                </>
-              )}
+              
 
               <li className="nav-item">
                 <NavLink className={getNavLinkClass} to="/media">

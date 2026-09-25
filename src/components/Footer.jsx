@@ -14,6 +14,7 @@ export default function Footer () {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="X"
+             title="X"
           className="text-light"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
@@ -26,6 +27,7 @@ export default function Footer () {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Pinterest"
+             title="Pinterest"
           className="text-light"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-pinterest" viewBox="0 0 16 16">

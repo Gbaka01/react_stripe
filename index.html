@@ -1,28 +1,23 @@
 <!DOCTYPE html>
-<html lang="fr-FR">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+ 
     <title>Dessins de Goré | Goli Gore Gbaka</title>
-
     <meta
       name="description"
       content="Goli Gore Gbaka est un artiste dessinateur contemporain présentant des œuvres originales autour de la figure humaine, de l'identité culturelle et du dessin contemporain."
     />
-    <meta
-      name="keywords"
-      content="Goli Gore Gbaka, dessins de Goré, artiste contemporain, dessin contemporain, portrait au crayon, art africain contemporain, dessin symbolique, art figuratif, artiste autodidacte, œuvres d'art"
-    />
     <meta name="author" content="GOLI Gore Gbaka" />
     <meta name="robots" content="index, follow" />
     <meta name="p:domain_verify" content="1ca99ed360654b429fab57707f1d33e1" />
-
+ 
     <link rel="canonical" href="https://www.dessinsgore.fr/" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
+ 
+    <!-- Icône : fichier à placer dans /public -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+ 
     <!-- Open Graph -->
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:type" content="website" />
@@ -35,7 +30,7 @@
     <meta property="og:url" content="https://www.dessinsgore.fr/" />
     <meta property="og:image" content="https://www.dessinsgore.fr/gg_1.jpg" />
     <meta property="og:image:alt" content="Œuvre de Goli Gore Gbaka" />
-
+ 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Dessins de Goré | Goli Gore Gbaka" />
@@ -44,28 +39,356 @@
       content="Découvrez les œuvres originales de Goli Gore Gbaka, artiste dessinateur contemporain."
     />
     <meta name="twitter:image" content="https://www.dessinsgore.fr/gg_1.jpg" />
-
+    <meta name="twitter:image:alt" content="Œuvre de Goli Gore Gbaka" />
+ 
     <!-- Données structurées Schema.org -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Goli Gore Gbaka",
-        "jobTitle": "Artist",
+        "jobTitle": "Artiste",
         "url": "https://www.dessinsgore.fr/",
         "sameAs": [
-          "https://instagram.com/",
-          "https://facebook.com/"
+          "https://goligbaka.fr/",
+          "https://femmegore.fr/",
+          "https://x.com/GoliGore33933",
+          "https://fr.pinterest.com/goregoli/"
         ]
       }
     </script>
+ 
+    <!--
+      Styles du bandeau cookies uniquement, préfixés "cc-" pour ne pas entrer
+      en conflit avec le CSS de l'app React (.btn, :root, body, * ...).
+    -->
+    <style>
+      .cc {
+        --cc-ink: #1d2a2e;
+        --cc-muted: #55656a;
+        --cc-line: #d3dbdd;
+        --cc-paper: #ffffff;
+        --cc-accent: #1f5f5b;
+        --cc-accent-hover: #174845;
+        --cc-focus: #0b57d0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        line-height: 1.5;
+        color: var(--cc-ink);
+      }
+      .cc, .cc *, .cc *::before, .cc *::after { box-sizing: border-box; }
+ 
+      /* --- Bandeau --- */
+      .cc-banner {
+        position: fixed;
+        inset: auto 0 0 0;
+        z-index: 1000;
+        background: var(--cc-paper);
+        border-top: 1px solid var(--cc-line);
+        box-shadow: 0 -6px 24px rgba(0, 0, 0, .08);
+        padding: 1.25rem;
+        animation: cc-slide-in .3s ease-out;
+      }
+      .cc-banner[hidden] { display: none; }
+ 
+      .cc-inner {
+        max-width: 62rem;
+        margin: 0 auto;
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .cc-text { flex: 1 1 26rem; max-width: 42rem; }
+      .cc-text h2 { margin: 0 0 .25rem; font-size: 1.05rem; }
+      .cc-text p { margin: 0; font-size: .92rem; color: var(--cc-muted); }
+      .cc-text a { color: var(--cc-accent); }
+      .cc-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+ 
+      .cc-btn {
+        font: inherit;
+        font-size: .92rem;
+        font-weight: 600;
+        padding: .65rem 1.1rem;
+        border-radius: 6px;
+        border: 2px solid var(--cc-accent);
+        cursor: pointer;
+        background: var(--cc-accent);
+        color: #fff;
+      }
+      .cc-btn:hover { background: var(--cc-accent-hover); border-color: var(--cc-accent-hover); }
+      .cc-btn-outline { background: transparent; color: var(--cc-accent); }
+      .cc-btn-outline:hover { background: #e6efee; border-color: var(--cc-accent); }
+ 
+      /* Bouton « Gérer mes cookies » (flottant) */
+      .cc-manage {
+        position: fixed;
+        left: 1rem;
+        bottom: 1rem;
+        z-index: 900;
+        font: inherit;
+        font-size: .8rem;
+        padding: .4rem .8rem;
+        border: 1px solid var(--cc-line);
+        border-radius: 999px;
+        background: var(--cc-paper);
+        color: var(--cc-accent);
+        text-decoration: underline;
+        cursor: pointer;
+      }
+ 
+      .cc :is(.cc-btn, .cc-manage, input):focus-visible {
+        outline: 3px solid var(--cc-focus);
+        outline-offset: 2px;
+      }
+ 
+      /* --- Fenêtre de préférences --- */
+      dialog.cc-dialog {
+        width: min(34rem, calc(100% - 2rem));
+        border: 0;
+        border-radius: 10px;
+        padding: 1.5rem;
+        background: var(--cc-paper);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+      }
+      dialog.cc-dialog::backdrop { background: rgba(20, 30, 32, .55); }
+      .cc-dialog h2 { margin: 0 0 .5rem; font-size: 1.2rem; }
+      .cc-dialog > p { margin: 0 0 1rem; color: var(--cc-muted); font-size: .92rem; }
+ 
+      .cc-category {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: .9rem 0;
+        border-top: 1px solid var(--cc-line);
+      }
+      .cc-category strong { display: block; }
+      .cc-category span { font-size: .88rem; color: var(--cc-muted); }
+      .cc-category input[type="checkbox"] {
+        width: 1.3rem; height: 1.3rem; margin-top: .2rem;
+        accent-color: var(--cc-accent); flex-shrink: 0;
+      }
+      .cc-dialog-actions {
+        display: flex; gap: .6rem; justify-content: flex-end; flex-wrap: wrap;
+        margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--cc-line);
+      }
+ 
+      @keyframes cc-slide-in {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .cc-banner { animation: none; }
+      }
+      @media (max-width: 600px) {
+        .cc-actions { width: 100%; }
+        .cc-actions .cc-btn { flex: 1 1 100%; }
+      }
+    </style>
+ 
+    <!--
+      Les snippets Google qui étaient ici (gtag.js G-XGZ3MC42CN et GTM-NWC8T3CV) ainsi que
+      le <noscript> GTM du <body> ont été supprimés : ils se déclenchaient avant tout
+      consentement. Ils sont chargés en bas de page, uniquement si l'utilisateur accepte
+      la « Mesure d'audience ».
+    -->
   </head>
-
+ 
   <body>
+    <noscript>Ce site nécessite JavaScript pour s’afficher correctement.</noscript>
+ 
+    <!-- Racine de l'application React -->
     <div id="root"></div>
-
+ 
+    <!--
+      Mesure d'audience : chargée UNIQUEMENT après consentement (type="text/plain").
+      Vérifiez que la balise GA4 n'est pas aussi configurée dans le conteneur GTM,
+      sinon les visites seraient comptées en double.
+    -->
+    <script type="text/plain" data-consent="analytics" async
+      src="https://www.googletagmanager.com/gtag/js?id=G-XGZ3MC42CN"></script>
+    <script type="text/plain" data-consent="analytics">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-XGZ3MC42CN', {
+        cookie_expires: 34128000 // 13 mois en secondes
+      });
+    </script>
+    <script type="text/plain" data-consent="analytics">
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NWC8T3CV');
+    </script>
+ 
+    <!-- Bandeau de consentement (hors #root : React ne le touche pas) -->
+    <button class="cc cc-manage" id="open-preferences" type="button">Gérer mes cookies</button>
+ 
+    <section class="cc cc-banner" id="consent-banner" role="region" aria-labelledby="consent-title" hidden>
+      <div class="cc-inner">
+        <div class="cc-text">
+          <h2 id="consent-title">Vos choix sur les cookies</h2>
+          <p>
+            Nous utilisons des cookies pour mesurer l’audience du site et afficher des contenus tiers.
+            Vous pouvez tout accepter, tout refuser ou choisir service par service.
+            Votre choix est conservé 6 mois et modifiable à tout moment via « Gérer mes cookies ».
+            <a href="/mentions#cookies">En savoir plus</a>
+          </p>
+        </div>
+        <div class="cc-actions">
+          <button class="cc-btn" type="button" data-cc-action="reject">Tout refuser</button>
+          <button class="cc-btn cc-btn-outline" type="button" data-cc-action="customize">Personnaliser</button>
+          <button class="cc-btn" type="button" data-cc-action="accept">Tout accepter</button>
+        </div>
+      </div>
+    </section>
+ 
+    <dialog class="cc cc-dialog" id="consent-dialog" aria-labelledby="dialog-title">
+      <h2 id="dialog-title">Préférences de cookies</h2>
+      <p>Choisissez les services que vous autorisez. Vous pourrez modifier ce choix à tout moment.</p>
+ 
+      <div class="cc-category">
+        <label for="c-essential">
+          <strong>Essentiels</strong>
+          <span>Nécessaires au fonctionnement du site : mémorisation de votre choix et paiement sécurisé Stripe (prévention de la fraude). Toujours actifs.</span>
+        </label>
+        <input type="checkbox" id="c-essential" checked disabled />
+      </div>
+ 
+      <div class="cc-category">
+        <label for="c-analytics">
+          <strong>Mesure d’audience</strong>
+          <span>Statistiques de fréquentation (Google Analytics, Google Tag Manager).</span>
+        </label>
+        <input type="checkbox" id="c-analytics" data-cc-category="analytics" />
+      </div>
+ 
+      <div class="cc-category">
+        <label for="c-media">
+          <strong>Contenus tiers</strong>
+          <span>Vidéos et cartes intégrées depuis d’autres sites.</span>
+        </label>
+        <input type="checkbox" id="c-media" data-cc-category="media" />
+      </div>
+ 
+      <div class="cc-dialog-actions">
+        <button class="cc-btn cc-btn-outline" type="button" data-cc-action="cancel">Annuler</button>
+        <button class="cc-btn" type="button" data-cc-action="save">Enregistrer mes choix</button>
+      </div>
+    </dialog>
+ 
+    <script>
+    (() => {
+      const STORAGE_KEY = "consent_v1";          // passez à v2 si les catégories changent
+      const DURATION_MS = 6 * 30 * 24 * 3600e3;  // ~6 mois, puis on redemande
+      const CATEGORIES = ["analytics", "media"];
+ 
+      const banner = document.getElementById("consent-banner");
+      const dialog = document.getElementById("consent-dialog");
+ 
+      /* ---------- Stockage ---------- */
+      function readConsent() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return null;
+          const consent = JSON.parse(raw);
+          if (Date.now() > consent.expires) {
+            localStorage.removeItem(STORAGE_KEY);
+            return null;
+          }
+          return consent;
+        } catch {
+          return null;
+        }
+      }
+ 
+      function writeConsent(choices) {
+        const previous = readConsent();
+        const consent = { ...choices, date: new Date().toISOString(), expires: Date.now() + DURATION_MS };
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(consent)); } catch {}
+ 
+        // Un script déjà chargé ne peut pas être « déchargé » : si l'utilisateur
+        // retire un consentement donné avant, on recharge la page.
+        const withdrew = previous && CATEGORIES.some(c => previous[c] && !consent[c]);
+        if (withdrew) { location.reload(); return; }
+ 
+        applyConsent(consent);
+        banner.hidden = true;
+      }
+ 
+      /* ---------- Activation des scripts ---------- */
+      function activateScripts(category) {
+        document
+          .querySelectorAll(`script[type="text/plain"][data-consent="${category}"]`)
+          .forEach(inactive => {
+            const script = document.createElement("script");
+            for (const { name, value } of inactive.attributes) {
+              if (name !== "type") script.setAttribute(name, value);
+            }
+            script.textContent = inactive.textContent;
+            inactive.replaceWith(script);
+          });
+      }
+ 
+      function applyConsent(consent) {
+        CATEGORIES.forEach(category => { if (consent[category]) activateScripts(category); });
+      }
+ 
+      /* ---------- Interface ---------- */
+      function openPreferences() {
+        const current = readConsent() || {};
+        dialog.querySelectorAll("[data-cc-category]").forEach(input => {
+          input.checked = Boolean(current[input.dataset.ccCategory]);
+        });
+        dialog.showModal();
+      }
+ 
+      // Utilisable depuis React : <button onClick={() => window.openCookiePreferences()}>
+      window.openCookiePreferences = openPreferences;
+ 
+      document.addEventListener("click", event => {
+        const action = event.target.closest("[data-cc-action]")?.dataset.ccAction;
+        if (!action) return;
+ 
+        const all = value => Object.fromEntries(CATEGORIES.map(c => [c, value]));
+ 
+        if (action === "accept") writeConsent(all(true));
+        if (action === "reject") writeConsent(all(false));
+        if (action === "customize") openPreferences();
+        if (action === "cancel") dialog.close();
+        if (action === "save") {
+          const choices = {};
+          dialog.querySelectorAll("[data-cc-category]").forEach(input => {
+            choices[input.dataset.ccCategory] = input.checked;
+          });
+          writeConsent(choices);
+          dialog.close();
+        }
+      });
+ 
+      document.getElementById("open-preferences").addEventListener("click", openPreferences);
+ 
+      /* ---------- Démarrage ---------- */
+      const existing = readConsent();
+      if (existing) {
+        applyConsent(existing);
+      } else {
+        banner.hidden = false;
+      }
+    })();
+    </script>
+ 
+    <!-- Point d'entrée Vite / React -->
     <script type="module" src="/src/main.jsx"></script>
-
+ 
+    <!--
+      Stripe (bouton d'achat) : conservé sans consentement car nécessaire au paiement
+      et à la prévention de la fraude. À mentionner dans votre politique de confidentialité.
+    -->
     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
   </body>
 </html>
+ 

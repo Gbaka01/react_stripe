@@ -1,12 +1,12 @@
-Options -MultiViews
-
-RewriteEngine On
-RewriteBase /
-
-# Laisser Apache servir les vrais fichiers et dossiers
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
-
-# Envoyer les routes React vers index.html
-RewriteRule ^ index.html [L]
+# Application React (Vite) sur OVH / Apache :
+# toute adresse qui n'est pas un vrai fichier (ex. /mentions, /galerie)
+# renvoie index.html, et c'est React Router qui affiche la bonne page.
+# Sans ce fichier, ouvrir directement /mentions donne une erreur 404.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>

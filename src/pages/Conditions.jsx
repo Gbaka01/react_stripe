@@ -1,27 +1,42 @@
 import "../css/accueil.css";
 import { useEffect, useState } from "react";
-
+ 
+const SITE = "https://dessinsgore.fr";
+const EMAIL = "gore.goli@gmail.com";
+const ADRESSE = "16 rue de Châtillon, 5ᵉ étage, 91260 Juvisy-sur-Orge";
+ 
+function Article({ titre, children }) {
+  return (
+    <article className="mb-5">
+      <h2 className="h4 mb-3">{titre}</h2>
+      {children}
+    </article>
+  );
+}
+ 
+function Citation({ source, children }) {
+  return (
+    <blockquote className="border-start ps-3 my-3">
+      <p className="fw-semibold mb-1">{source}</p>
+      <p className="fst-italic mb-0">{children}</p>
+    </blockquote>
+  );
+}
+ 
 export default function Conditions() {
   const [showScrollTop, setShowScrollTop] = useState(false);
-
+ 
   useEffect(() => {
-    const onScroll = () => {
-      setShowScrollTop(window.scrollY > 200);
-    };
-
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setShowScrollTop(window.scrollY > 200);
+    window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const handleScrollTop = (e) => {
-    e.preventDefault();
+ 
+  const handleScrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
+ 
   return (
     <section className="container py-5">
       {showScrollTop && (
@@ -35,261 +50,607 @@ export default function Conditions() {
           ↑
         </button>
       )}
-
+ 
       <div className="text-light">
-        <h1 className="mb-4">Conditions générales de vente</h1>
-
-        <p>
-          <strong>Date de dernière mise à jour :</strong> 18/09/2025
-        </p>
-
-        <p>Le Prestataire peut être joint aux coordonnées suivantes :</p>
-        <ul>
-          <li>16 rue de Chatillon, 91260 Juvisy-sur-Orge</li>
-          <li>07 60 29 23 63</li>
-          <li>gore.goli@gmail.com</li>
-        </ul>
-
-        <h2 className="mt-4">Article 1 - Champ d’application</h2>
-        <p>
-          Les présentes conditions générales de vente (les « Conditions
-          Générales ») s&apos;appliquent à la vente des produits commercialisés
-          par le Vendeur (les « Produits ») auprès de tout consommateur et
-          non-professionnel désirant en bénéficier (le « Client »).
-        </p>
-
-        <p>
-          Les Conditions Générales prévoient notamment les conditions d’achat,
-          de paiement et de livraison des Produits commandés par le Client. Le
-          Client peut se reporter à la description de chaque Produit figurant
-          dans le catalogue du Vendeur afin de connaître les caractéristiques de
-          ce dernier.
-        </p>
-
-        <p>
-          La passation d’une commande de Produits emporte, de la part du Client,
-          l’acceptation préalable sans restriction ni réserve des Conditions
-          Générales, dont le Client déclare avoir pris connaissance.
-        </p>
-
-        <p>
-          Les Conditions Générales sont applicables sous réserve de toute
-          stipulation contraire figurant au bon de commande ou à des conditions
-          particulières le cas échéant conclues entre le Vendeur et le Client
-          concerné.
-        </p>
-
-        <p>
-          Les Conditions Générales s’entendent sans préjudice des dispositions
-          légales applicables et notamment celles prévues par le Code de la
-          consommation.
-        </p>
-
-        <h2 className="mt-4">Article 2 – Produits et disponibilité</h2>
-        <p>
-          Le prix et les caractéristiques essentielles de chaque Produit sont
-          décrits dans le catalogue du Vendeur et édités, selon le cas, par le
-          Vendeur ou ses fournisseurs. Les descriptions sont susceptibles de
-          comporter des indications, photographies et graphismes qui ne sont
-          communiqués qu’à titre illustratif et peuvent être modifiés ou mis à
-          jour par le Vendeur.
-        </p>
-
-        <p>
-          Les Produits proposés sont conformes à la législation française et aux
-          normes européennes CE en vigueur au moment de la passation de la
-          commande.
-        </p>
-
-        <p>
-          Le fait pour le Vendeur de présenter des Produits dans son catalogue
-          ne constitue pas une obligation de commercialisation, notamment en cas
-          de rupture de stock, d’indisponibilité des Produits ou d’impossibilité
-          de procéder à la commercialisation desdits Produits, quelle qu’en soit
-          la raison.
-        </p>
-
-        <p>
-          Dans le cas où un ou plusieurs Produits seraient indisponibles à la
-          suite de la passation d’une commande, le Vendeur informera le Client
-          par écrit du délai d’attente quant à la réception du Produit
-          momentanément indisponible.
-        </p>
-
-        <ul>
-          <li>
-            Le Vendeur pourra, avec l’accord du Client, proposer au même prix un
-            produit de nature identique à celui initialement commandé.
-          </li>
-          <li>
-            Le Client aura le choix d’attendre la disponibilité du ou des
-            Produits manquants afin de recevoir la globalité de sa commande en
-            un seul envoi.
-          </li>
-          <li>Le Client pourra annuler totalement la commande.</li>
-          <li>
-            Le Client pourra annuler la commande des Produits indisponibles et
-            recevoir les autres Produits figurant dans la commande dans les
-            délais annoncés.
-          </li>
-        </ul>
-
-        <p>
-          Dans les deux derniers cas, lorsque le Client aura déjà procédé au
-          versement d’une somme, il sera remboursé suivant des modalités
-          équivalentes à celles applicables en cas d’exercice du droit de
-          rétractation.
-        </p>
-
-        <h2 className="mt-4">Article 3 - Commandes</h2>
-        <h3 className="h5 mt-3">3.1 Conditions préalables</h3>
-        <p>
-          Les Produits sont réservés aux personnes ayant la qualité de client
-          particulier, consommateur ou non-professionnel tel que défini par le
-          Code de la consommation.
-        </p>
-
-        <p>
-          Le Vendeur ne commercialise pas de Produits auprès de toute personne
-          physique ou morale agissant pour des besoins professionnels ou dans le
-          cadre d’une activité professionnelle accessoire. Chaque Client
-          s&apos;interdit d&apos;effectuer des achats de Produits en grande
-          quantité afin de les revendre à quelque titre et sous quelque forme
-          que ce soit.
-        </p>
-
-        <p>
-          La commande de Produits est réservée aux Clients justifiant
-          obligatoirement d&apos;une adresse de livraison en France
-          métropolitaine, [Liste des pays et territoires concernés], de format
-          et standard français (nom, prénom, adresse postale, code postal,
-          ville, pays).
-        </p>
-
-        <h3 className="h5 mt-3">3.2 Passation d’une commande</h3>
-        <p>
-          Tout Client désirant passer une commande auprès du Vendeur devra
-          remplir et signer un bon de commande résumant notamment les
-          caractéristiques essentielles du ou des Produits commandés, le prix
-          total, les conditions de paiement, le délai ou la durée de livraison,
-          toute éventuelle restriction de livraison, un numéro de suivi de la
-          commande du Client et les modalités d’exercice du droit de
-          rétractation lorsqu’il est applicable.
-        </p>
-
-        <p>
-          En cas de vente de Produits dont la fabrication est entreprise sur
-          commande spéciale du Client, la commande est précédée de
-          l’établissement d’un devis détaillé, d’une durée de validité de 5 ans
-          à compter de sa date de création, mentionnant le prix ou le mode de
-          calcul du prix et dont l’acceptation et la signature par le Client
-          vaut alors bon de commande.
-        </p>
-
-        <p>
-          Pour toute vente de biens meubles, le Vendeur devra le cas échéant
-          mentionner sur le bon de commande la période pendant laquelle les
-          pièces détachées indispensables à l’utilisation des Produits sont
-          disponibles sur le marché auprès du fabricant ou de l’importateur.
-        </p>
-
-        <p>
-          La confirmation de la commande a lieu dès signature du bon de commande
-          par le Vendeur ou envoi par ce dernier d’un courrier électronique de
-          confirmation de la commande, la commande devenant ainsi ferme et
-          définitive, sous réserve toutefois de l’application éventuelle du
-          droit de rétractation du Client.
-        </p>
-
-        <p>
-          Aucune commande ne peut dès lors être modifiée ou annulée sans accord
-          préalable et écrit entre le Vendeur et le Client.
-        </p>
-
-        <p>
-          Sous réserve de l’application éventuelle du droit de rétractation, en
-          cas d’annulation par le Client d’une commande confirmée, pour quelque
-          motif que ce soit, et sans préjudice de tous dommages et intérêts
-          complémentaires :
-        </p>
-
-        <ul>
-          <li>
-            l’acompte éventuellement versé à la commande par le Client restera
-            acquis de plein droit au Vendeur et ne donnera lieu à aucun
-            remboursement ; ou
-          </li>
-          <li>
-            une somme correspondant à 0 % du prix total hors taxes des Produits
-            sera due au Vendeur et facturée au Client.
-          </li>
-        </ul>
-
-        <p>
-          Réciproquement, en cas d’annulation par le Vendeur d’une commande
-          confirmée, pour quelque motif que ce soit, l’acompte éventuellement
-          versé à la commande par le Client lui sera restitué, étant précisé
-          qu’il sera restitué au double si la commande ne correspond pas à une
-          commande spéciale sur devis du Client.
-        </p>
-
-        <p>
-          Sauf dans le cas de commande spéciale sur devis, tout acompte versé
-          d’avance par le Client portera intérêt au taux légal à l&apos;expiration
-          d&apos;un délai de trois mois à compter du versement jusqu&apos;à la
-          livraison, sans préjudice de l&apos;obligation du Vendeur de livrer les
-          Produits.
-        </p>
-
-        <h3 className="h5 mt-3">3.3 Contrôle des commandes</h3>
-        <p>
-          Chaque Client garantit la sincérité et l&apos;exactitude des
-          informations fournies pour les besoins de sa commande et s&apos;engage
-          à notifier au Vendeur toute modification éventuelle.
-        </p>
-
-        <p>
-          Pour lutter contre la fraude, le Vendeur ou ses prestataires de
-          paiement ou de livraison peuvent être amenés à demander des
-          justificatifs supplémentaires au Client ou prendre attache avec ce
-          dernier, au moment de l&apos;acceptation et/ou de l’expédition de la
-          commande.
-        </p>
-
-        <p>
-          Le Vendeur se réserve également le droit de ne pas accepter ou
-          d’annuler la commande de tout Client qui aurait fourni des
-          informations erronées, qui ne procèderait pas au paiement des Produits
-          ou avec lequel existerait un litige relatif au paiement d’une commande
-          antérieure.
-        </p>
-
-        <h2 className="mt-4">Suite du document</h2>
-        <p>
-          Le reste de tes conditions générales de vente peut être conservé sur
-          le même modèle, en séparant clairement chaque article avec des titres,
-          sous-titres, paragraphes et listes pour améliorer la lisibilité.
-        </p>
-
-        <hr className="my-4 border-light" />
-
-        <h2 className="mt-4">Annexe : Formulaire de rétractation</h2>
-        <p>À l’attention de : Monsieur GOLI Gore Gbaka</p>
-        <p>16 rue de Chatillon, 91260 Juvisy-sur-Orge</p>
-
-        <p>
-          Je vous notifie par la présente ma rétractation du contrat portant sur
-          l’achat des produits suivants :
-        </p>
-
-        <ul>
-          <li>Nom(s) et référence(s) de la ou des commande(s)</li>
-          <li>Commandé(s) le</li>
-          <li>Nom du client à l’origine de la commande</li>
-          <li>Adresse du client à l’origine de la commande</li>
-          <li>Signature du client</li>
-        </ul>
+        <h1 className="mb-2">Conditions générales de vente</h1>
+        <p className="mb-5">En vigueur au 18/10/2026</p>
+ 
+        {/* ARTICLE 1 */}
+        <Article titre="Article 1 – Champ d’application">
+          <p>
+            Les présentes Conditions Générales de Vente (dites « CGV »)
+            s’appliquent, sans restriction ni réserve, à l’ensemble des ventes
+            conclues par le Vendeur auprès d’acheteurs non professionnels (« les
+            Clients » ou « le Client »), désirant acquérir les produits proposés
+            à la vente (« les Produits ») par le Vendeur sur le site{" "}
+            <a href={SITE}>{SITE}</a>. Les Produits proposés à la vente sur le
+            site sont les suivants : dessins.
+          </p>
+          <p>
+            Les caractéristiques principales des Produits, et notamment les
+            spécifications, illustrations et indications de dimensions, sont
+            présentées sur le site, ce dont le Client est tenu de prendre
+            connaissance avant de commander. Le choix et l’achat d’un Produit
+            sont de la seule responsabilité du Client. Les offres de Produits
+            s’entendent dans la limite des stocks disponibles, tels que précisés
+            lors de la passation de la commande.
+          </p>
+          <p>
+            Ces CGV sont accessibles à tout moment sur le site et prévaudront sur
+            tout autre document. Le Client déclare avoir pris connaissance des
+            présentes CGV et les avoir acceptées en cochant la case prévue à cet
+            effet avant la mise en œuvre de la procédure de commande en ligne.
+            Sauf preuve contraire, les données enregistrées dans le système
+            informatique du Vendeur constituent la preuve de l’ensemble des
+            transactions conclues avec le Client.
+          </p>
+          <p className="mb-1">Les coordonnées du Vendeur sont les suivantes :</p>
+          <ul>
+            <li>GOLI Gore Gbaka</li>
+            <li>{ADRESSE}</li>
+            <li>SIRET : 918 868 332 00019</li>
+            <li>
+              E-mail : <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+            </li>
+            <li>
+              Téléphone : <a href="tel:+33760292363">07 60 29 23 63</a>
+            </li>
+          </ul>
+        </Article>
+ 
+        {/* ARTICLE 2 */}
+        <Article titre="Article 2 – Prix">
+          <p>
+            Les Produits sont fournis aux tarifs en vigueur figurant sur le site
+            lors de l’enregistrement de la commande par le Vendeur. Les prix sont
+            exprimés en euros, HT et TTC. Les tarifs tiennent compte d’éventuelles
+            réductions qui seraient consenties par le Vendeur sur le site.
+          </p>
+          <p>
+            Ces tarifs sont fermes et non révisables pendant leur période de
+            validité, mais le Vendeur se réserve le droit, hors période de
+            validité, d’en modifier les prix à tout moment.
+          </p>
+          <p>
+            Les prix ne comprennent pas les frais de traitement, d’expédition, de
+            transport et de livraison, qui sont facturés en supplément, dans les
+            conditions indiquées sur le site et calculés préalablement à la
+            passation de la commande. Le paiement demandé au Client correspond au
+            montant total de l’achat, y compris ces frais.
+          </p>
+          <p>
+            Une facture est établie par le Vendeur et remise au Client lors de la
+            livraison des Produits commandés.
+          </p>
+        </Article>
+ 
+        {/* ARTICLE 3 */}
+        <Article titre="Article 3 – Commandes">
+          <p>
+            Il appartient au Client de sélectionner sur le site les Produits
+            qu’il désire commander, selon les modalités suivantes : ajout du ou
+            des Produits au panier, validation du panier, saisie des
+            informations de livraison, acceptation des présentes CGV, puis
+            paiement.
+          </p>
+          <p>
+            Les offres de Produits sont valables tant qu’elles sont visibles sur
+            le site, dans la limite des stocks disponibles. La vente ne sera
+            considérée comme valide qu’après paiement intégral du prix. Il
+            appartient au Client de vérifier l’exactitude de la commande et de
+            signaler immédiatement toute erreur.
+          </p>
+          <p>
+            Toute commande passée sur le site constitue la formation d’un contrat
+            conclu à distance entre le Client et le Vendeur. Le Vendeur se
+            réserve le droit d’annuler ou de refuser toute commande d’un Client
+            avec lequel il existerait un litige relatif au paiement d’une
+            commande antérieure. Le Client pourra suivre l’évolution de sa
+            commande sur le site.
+          </p>
+        </Article>
+ 
+        {/* ARTICLE 3 BIS */}
+        <Article titre="Article 3 bis – Espace client – Compte">
+          <p>
+            Afin de passer commande, le Client est invité à créer un compte
+            (espace personnel). Pour ce faire, il doit s’inscrire en remplissant
+            le formulaire qui lui sera proposé au moment de sa commande et
+            s’engage à fournir des informations sincères et exactes concernant
+            son état civil et ses coordonnées, notamment son adresse e-mail.
+          </p>
+          <p>
+            Le Client est responsable de la mise à jour des informations
+            fournies. Il lui est précisé qu’il peut les modifier en se connectant
+            à son compte.
+          </p>
+          <p>
+            Pour accéder à son espace personnel et à l’historique de ses
+            commandes, le Client devra s’identifier à l’aide de son nom
+            d’utilisateur et de son mot de passe, qui lui seront communiqués
+            après son inscription et qui sont strictement personnels. À ce
+            titre, le Client s’en interdit toute divulgation. Dans le cas
+            contraire, il restera seul responsable de l’usage qui en sera fait.
+          </p>
+          <p>
+            Le Client pourra également solliciter sa désinscription en se rendant
+            à la page dédiée de son espace personnel ou en envoyant un e-mail à{" "}
+            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>. Celle-ci sera effective dans
+            un délai raisonnable.
+          </p>
+          <p>
+            En cas de non-respect des conditions générales de vente et/ou
+            d’utilisation, le site aura la possibilité de suspendre, voire de
+            fermer, le compte d’un Client après mise en demeure adressée par voie
+            électronique et restée sans effet. Toute suppression de compte, quel
+            qu’en soit le motif, entraîne la suppression pure et simple de toutes
+            les informations personnelles du Client.
+          </p>
+          <p>
+            Tout événement dû à un cas de force majeure ayant pour conséquence un
+            dysfonctionnement du site ou du serveur, et sous réserve de toute
+            interruption ou modification en cas de maintenance, n’engage pas la
+            responsabilité du Vendeur.
+          </p>
+          <p>
+            La création du compte entraîne l’acceptation des présentes conditions
+            générales de vente.
+          </p>
+        </Article>
+ 
+        {/* ARTICLE 4 */}
+        <Article titre="Article 4 – Conditions de paiement">
+          <p className="mb-1">
+            Le prix est payé par voie de paiement sécurisé, selon les modalités
+            suivantes :
+          </p>
+          <ul>
+            <li>paiement par carte bancaire.</li>
+          </ul>
+          <p>
+            Le prix est payable comptant par le Client, en totalité, au jour de
+            la passation de la commande.
+          </p>
+          <p>
+            Les données de paiement sont échangées en mode crypté grâce au
+            protocole défini par le prestataire de paiement agréé intervenant
+            pour les transactions bancaires réalisées sur le site.
+          </p>
+          <p>
+            Les paiements effectués par le Client ne seront considérés comme
+            définitifs qu’après encaissement effectif par le Vendeur des sommes
+            dues. Le Vendeur ne sera pas tenu de procéder à la délivrance des
+            Produits commandés par le Client si celui-ci ne lui en paie pas le
+            prix en totalité dans les conditions ci-dessus indiquées.
+          </p>
+        </Article>
+ 
+        {/* ARTICLE 5 */}
+        <Article titre="Article 5 – Livraisons">
+          <p>
+            Les Produits commandés par le Client seront livrés en France
+            métropolitaine et partout dans le monde.
+          </p>
+          <p>
+            Les livraisons interviennent dans un délai de 30 jours à l’adresse
+            indiquée par le Client lors de sa commande sur le site. La livraison
+            est constituée par le transfert au Client de la possession physique
+            ou du contrôle du Produit. Sauf cas particulier ou indisponibilité
+            d’un ou plusieurs Produits, les Produits commandés seront livrés en
+            une seule fois. Le Vendeur s’engage à faire ses meilleurs efforts
+            pour livrer les Produits commandés par le Client dans les délais
+            ci-dessus précisés.
+          </p>
+          <p>
+            Si les Produits commandés n’ont pas été livrés dans un délai de 30
+            jours après la date indicative de livraison, pour toute autre cause
+            que la force majeure ou le fait du Client, la vente pourra être
+            résolue à la demande écrite du Client dans les conditions prévues aux
+            articles L216-2, L216-3 et L241-4 du Code de la consommation. Les
+            sommes versées par le Client lui seront alors restituées au plus tard
+            dans les quatorze jours qui suivent la date de dénonciation du
+            contrat, à l’exclusion de toute indemnisation ou retenue.
+          </p>
+          <p>
+            En cas de demande particulière du Client concernant les conditions
+            d’emballage ou de transport des Produits commandés, dûment acceptée
+            par écrit par le Vendeur, les coûts y afférents feront l’objet d’une
+            facturation spécifique complémentaire, sur devis préalablement
+            accepté par écrit par le Client.
+          </p>
+          <p>
+            Le Client est tenu de vérifier l’état des Produits livrés. Il dispose
+            d’un délai de 30 jours à compter de la livraison pour formuler des
+            réclamations par courrier ou par e-mail, accompagnées de tous les
+            justificatifs y afférents (photos notamment). Passé ce délai et à
+            défaut d’avoir respecté ces formalités, les Produits seront réputés
+            conformes et exempts de tout vice apparent, et aucune réclamation ne
+            pourra être valablement acceptée par le Vendeur.
+          </p>
+          <p>
+            Le Vendeur remboursera ou remplacera dans les plus brefs délais, et à
+            ses frais, les Produits livrés dont les défauts de conformité ou les
+            vices apparents ou cachés auront été dûment prouvés par le Client,
+            dans les conditions prévues aux articles L217-4 et suivants du Code
+            de la consommation et à celles prévues aux présentes CGV.
+          </p>
+          <p>
+            Le transfert des risques de perte et de détérioration ne sera réalisé
+            qu’au moment où le Client prendra physiquement possession des
+            Produits. Les Produits voyagent donc aux risques et périls du Vendeur,
+            sauf lorsque le Client aura lui-même choisi le transporteur. Dans ce
+            cas, les risques sont transférés au moment de la remise du bien au
+            transporteur.
+          </p>
+        </Article>
+ 
+        {/* ARTICLE 6 */}
+        <Article titre="Article 6 – Transfert de propriété">
+          <p>
+            Le transfert de propriété des Produits du Vendeur au Client ne sera
+            réalisé qu’après complet paiement du prix par ce dernier, et ce
+            quelle que soit la date de livraison desdits Produits.
+          </p>
+        </Article>
+ 
+        {/* ARTICLE 7 — texte corrigé : l'original citait le cas des
+            livraisons régulières, qui ne s'applique pas ici */}
+        <Article titre="Article 7 – Droit de rétractation">
+          <p>
+            Conformément à l’article L221-18 du Code de la consommation, le
+            Client dispose d’un délai de quatorze (14) jours à compter de la
+            réception du Produit pour exercer son droit de rétractation, sans
+            avoir à motiver sa décision ni à supporter d’autres coûts que les
+            frais de retour.
+          </p>
+          <p>
+            Le droit de rétractation peut être exercé à l’aide du formulaire de
+            rétractation figurant en annexe, également disponible sur le site, ou
+            par toute autre déclaration dénuée d’ambiguïté exprimant la volonté
+            de se rétracter, notamment par courrier postal ou par e-mail adressé
+            au Vendeur aux coordonnées indiquées à l’article 1 des CGV.
+          </p>
+          <p>
+            Les retours sont à effectuer dans leur état d’origine et complets
+            (emballage, accessoires, certificat…), permettant leur
+            recommercialisation à l’état neuf, accompagnés de la facture
+            d’achat. Les Produits endommagés, salis ou incomplets ne sont pas
+            repris. Les frais de retour restent à la charge du Client.
+          </p>
+          <p>
+            Le remboursement sera effectué dans un délai de 14 jours à compter de
+            la réception par le Vendeur des Produits retournés par le Client dans
+            les conditions prévues au présent article.
+          </p>
+        </Article>
+ 
+        {/* ARTICLE 8 */}
+        <Article titre="Article 8 – Responsabilité du Vendeur – Garanties">
+          <p className="mb-1">Les Produits fournis par le Vendeur bénéficient :</p>
+          <ul>
+            <li>
+              de la garantie légale de conformité, pour les Produits
+              défectueux, abîmés ou endommagés ou ne correspondant pas à la
+              commande ;
+            </li>
+            <li>
+              de la garantie légale contre les vices cachés provenant d’un
+              défaut de matière, de conception ou de fabrication affectant les
+              Produits livrés et les rendant impropres à l’utilisation.
+            </li>
+          </ul>
+ 
+          <h3 className="h5 mt-4">Dispositions relatives aux garanties légales</h3>
+ 
+          <Citation source="Article L217-4 du Code de la consommation">
+            « Le vendeur est tenu de livrer un bien conforme au contrat et
+            répond des défauts de conformité existant lors de la délivrance. Il
+            répond également des défauts de conformité résultant de l’emballage,
+            des instructions de montage ou de l’installation lorsque celle-ci a
+            été mise à sa charge par le contrat ou a été réalisée sous sa
+            responsabilité. »
+          </Citation>
+ 
+          <blockquote className="border-start ps-3 my-3">
+            <p className="fw-semibold mb-1">
+              Article L217-5 du Code de la consommation
+            </p>
+            <p className="fst-italic mb-1">« Le bien est conforme au contrat :</p>
+            <p className="fst-italic mb-1">
+              1° S’il est propre à l’usage habituellement attendu d’un bien
+              semblable et, le cas échéant :
+            </p>
+            <ul className="fst-italic">
+              <li>
+                s’il correspond à la description donnée par le vendeur et
+                possède les qualités que celui-ci a présentées à l’acheteur sous
+                forme d’échantillon ou de modèle ;
+              </li>
+              <li>
+                s’il présente les qualités qu’un acheteur peut légitimement
+                attendre eu égard aux déclarations publiques faites par le
+                vendeur, par le producteur ou par son représentant, notamment
+                dans la publicité ou l’étiquetage ;
+              </li>
+            </ul>
+            <p className="fst-italic mb-0">
+              2° Ou s’il présente les caractéristiques définies d’un commun
+              accord par les parties ou est propre à tout usage spécial recherché
+              par l’acheteur, porté à la connaissance du vendeur et que ce
+              dernier a accepté. »
+            </p>
+          </blockquote>
+ 
+          <Citation source="Article L217-12 du Code de la consommation">
+            « L’action résultant du défaut de conformité se prescrit par deux
+            ans à compter de la délivrance du bien. »
+          </Citation>
+ 
+          <Citation source="Article 1641 du Code civil">
+            « Le vendeur est tenu de la garantie à raison des défauts cachés de
+            la chose vendue qui la rendent impropre à l’usage auquel on la
+            destine, ou qui diminuent tellement cet usage, que l’acheteur ne
+            l’aurait pas acquise, ou n’en aurait donné qu’un moindre prix, s’il
+            les avait connus. »
+          </Citation>
+ 
+          <Citation source="Article 1648, alinéa 1er, du Code civil">
+            « L’action résultant des vices rédhibitoires doit être intentée par
+            l’acquéreur dans un délai de deux ans à compter de la découverte du
+            vice. »
+          </Citation>
+ 
+          <Citation source="Article L217-16 du Code de la consommation">
+            « Lorsque l’acheteur demande au vendeur, pendant le cours de la
+            garantie commerciale qui lui a été consentie lors de l’acquisition
+            ou de la réparation d’un bien meuble, une remise en état couverte
+            par la garantie, toute période d’immobilisation d’au moins sept
+            jours vient s’ajouter à la durée de la garantie qui restait à
+            courir. Cette période court à compter de la demande d’intervention
+            de l’acheteur ou de la mise à disposition pour réparation du bien en
+            cause, si cette mise à disposition est postérieure à la demande
+            d’intervention. »
+          </Citation>
+ 
+          <p>
+            Afin de faire valoir ses droits, le Client devra informer le
+            Vendeur, par écrit (e-mail ou courrier), de la non-conformité des
+            Produits ou de l’existence des vices cachés à compter de leur
+            découverte.
+          </p>
+          <p>
+            Le Vendeur remboursera, remplacera ou fera réparer les Produits ou
+            pièces sous garantie jugés non conformes ou défectueux. Les frais
+            d’envoi seront remboursés sur la base du tarif facturé et les frais
+            de retour seront remboursés sur présentation des justificatifs.
+          </p>
+          <p>
+            Les remboursements, remplacements ou réparations des Produits jugés
+            non conformes ou défectueux seront effectués dans les meilleurs
+            délais et au plus tard dans les 30 jours suivant la constatation par
+            le Vendeur du défaut de conformité ou du vice caché. Ce
+            remboursement pourra être fait par virement ou chèque bancaire.
+          </p>
+          <p className="mb-1">
+            La responsabilité du Vendeur ne saurait être engagée dans les cas
+            suivants :
+          </p>
+          <ul>
+            <li>
+              non-respect de la législation du pays dans lequel les Produits
+              sont livrés, qu’il appartient au Client de vérifier ;
+            </li>
+            <li>
+              mauvaise utilisation, utilisation à des fins professionnelles,
+              négligence ou défaut d’entretien de la part du Client, ainsi
+              qu’en cas d’usure normale du Produit, d’accident ou de force
+              majeure ;
+            </li>
+            <li>
+              les photographies et graphismes présentés sur le site ne sont pas
+              contractuels et ne sauraient engager la responsabilité du Vendeur.
+            </li>
+          </ul>
+          <p>
+            La garantie du Vendeur est, en tout état de cause, limitée au
+            remplacement ou au remboursement des Produits non conformes ou
+            affectés d’un vice.
+          </p>
+        </Article>
+ 
+        {/* ARTICLE 9 */}
+        <Article titre="Article 9 – Données personnelles">
+          <p>
+            Le Client est informé que la collecte de ses données à caractère
+            personnel est nécessaire à la vente des Produits et à leur
+            délivrance ou livraison, confiées au Vendeur. Ces données à
+            caractère personnel sont collectées uniquement pour l’exécution du
+            contrat de vente.
+          </p>
+ 
+          <h3 className="h5 mt-4">9.1 Collecte des données à caractère personnel</h3>
+          <p className="mb-1">
+            Les données à caractère personnel collectées sur le site sont les
+            suivantes :
+          </p>
+          <ul>
+            <li>
+              <strong>Ouverture de compte</strong> : lors de la création du
+              compte Client, nom, prénom, adresse postale, numéro de téléphone
+              et adresse e-mail.
+            </li>
+            <li>
+              <strong>Paiement</strong> : dans le cadre du paiement des
+              Produits, les données financières relatives à la carte bancaire
+              du Client sont traitées par le prestataire de paiement.
+            </li>
+          </ul>
+ 
+          <h3 className="h5 mt-4">9.2 Destinataires des données à caractère personnel</h3>
+          <p>
+            Les données à caractère personnel sont réservées à l’usage exclusif
+            du Vendeur et de ses salariés.
+          </p>
+ 
+          <h3 className="h5 mt-4">9.3 Responsable de traitement</h3>
+          <p>
+            Le responsable de traitement des données est le Vendeur, au sens de
+            la loi Informatique et Libertés et du Règlement (UE) 2016/679 sur la
+            protection des données à caractère personnel. Il peut être contacté
+            à l’adresse <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
+          </p>
+ 
+          <h3 className="h5 mt-4">9.4 Limitation du traitement</h3>
+          <p>
+            Sauf accord exprès du Client, ses données à caractère personnel ne
+            sont pas utilisées à des fins publicitaires ou marketing.
+          </p>
+ 
+          <h3 className="h5 mt-4">9.5 Durée de conservation des données</h3>
+          <p>
+            Le Vendeur conservera les données ainsi recueillies pendant un délai
+            de 5 ans, couvrant le temps de la prescription de la responsabilité
+            civile contractuelle applicable.
+          </p>
+ 
+          <h3 className="h5 mt-4">9.6 Sécurité et confidentialité</h3>
+          <p>
+            Le Vendeur met en œuvre des mesures organisationnelles, techniques,
+            logicielles et physiques en matière de sécurité du numérique pour
+            protéger les données personnelles contre les altérations,
+            destructions et accès non autorisés. Toutefois, Internet n’étant pas
+            un environnement complètement sécurisé, le Vendeur ne peut garantir
+            la sécurité de la transmission ou du stockage des informations sur
+            Internet.
+          </p>
+ 
+          <h3 className="h5 mt-4">9.7 Mise en œuvre des droits des Clients et utilisateurs</h3>
+          <p className="mb-1">
+            En application de la réglementation applicable aux données à
+            caractère personnel, les Clients et utilisateurs du site disposent
+            des droits suivants, qu’ils exercent en écrivant au responsable de
+            traitement (article 9.3) :
+          </p>
+          <ul>
+            <li>mettre à jour ou supprimer les données qui les concernent ;</li>
+            <li>supprimer leur compte ;</li>
+            <li>
+              exercer leur droit d’accès pour connaître les données personnelles
+              les concernant ;
+            </li>
+            <li>demander la rectification de données inexactes ;</li>
+            <li>
+              demander la suppression de leurs données, conformément aux lois
+              applicables en matière de protection des données ;
+            </li>
+            <li>
+              solliciter la portabilité des données détenues par le Vendeur vers
+              un autre prestataire ;
+            </li>
+            <li>s’opposer au traitement de leurs données par le Vendeur.</li>
+          </ul>
+          <p>
+            Ces droits, dès lors qu’ils ne s’opposent pas à la finalité du
+            traitement, peuvent être exercés par courrier ou par e-mail. Le
+            responsable de traitement doit apporter une réponse dans un délai
+            maximal d’un mois. En cas de refus de faire droit à la demande du
+            Client, celui-ci doit être motivé.
+          </p>
+          <p>
+            Le Client est informé qu’en cas de refus, il peut introduire une
+            réclamation auprès de la CNIL (3 place de Fontenoy, 75007 Paris) ou
+            saisir une autorité judiciaire.
+          </p>
+          <p>
+            Le Client peut être invité à cocher une case par laquelle il accepte
+            de recevoir des e-mails à caractère informatif et publicitaire de la
+            part du Vendeur. Il aura toujours la possibilité de retirer son
+            accord à tout moment en contactant le Vendeur ou en suivant le lien
+            de désabonnement.
+          </p>
+        </Article>
+ 
+        {/* ARTICLE 10 */}
+        <Article titre="Article 10 – Propriété intellectuelle">
+          <p>
+            Le contenu du site est la propriété du Vendeur et de ses partenaires
+            et est protégé par les lois françaises et internationales relatives
+            à la propriété intellectuelle. Toute reproduction totale ou
+            partielle de ce contenu est strictement interdite et est susceptible
+            de constituer un délit de contrefaçon.
+          </p>
+        </Article>
+ 
+        {/* ARTICLE 11 */}
+        <Article titre="Article 11 – Droit applicable – Langue">
+          <p>
+            Les présentes CGV et les opérations qui en découlent sont régies et
+            soumises au droit français. Les présentes CGV sont rédigées en
+            langue française. Dans le cas où elles seraient traduites en une ou
+            plusieurs langues étrangères, seul le texte français ferait foi en
+            cas de litige.
+          </p>
+        </Article>
+ 
+        {/* ARTICLE 12 */}
+        <Article titre="Article 12 – Litiges">
+          <p>
+            Pour toute réclamation, le Client peut contacter le Vendeur à
+            l’adresse postale ou e-mail indiquée à l’article 1 des présentes
+            CGV.
+          </p>
+          <p>
+            Conformément aux articles L612-1 et suivants du Code de la
+            consommation, le Client peut recourir gratuitement à un médiateur de
+            la consommation en vue de la résolution amiable d’un litige. Le
+            médiateur désigné est :
+          </p>
+          {/* TODO : remplacer par un vrai médiateur de la consommation agréé
+              (un tribunal n'est pas un médiateur) */}
+          <ul>
+            <li>[Nom du médiateur]</li>
+            <li>[Adresse du médiateur]</li>
+            <li>[Site internet / e-mail du médiateur]</li>
+          </ul>
+          <p>
+            Tous les litiges relatifs aux opérations d’achat et de vente
+            conclues en application des présentes CGV qui n’auraient pas fait
+            l’objet d’un règlement amiable entre le Vendeur et le Client ou par
+            médiation seront soumis aux tribunaux compétents dans les conditions
+            de droit commun.
+          </p>
+        </Article>
+ 
+        {/* ANNEXE */}
+        <Article titre="Annexe I – Formulaire de rétractation">
+          <p>
+            Le présent formulaire doit être complété et renvoyé uniquement si le
+            Client souhaite se rétracter de la commande passée sur{" "}
+            <a href={SITE}>{SITE}</a>, sauf exclusions ou limites à l’exercice
+            du droit de rétractation prévues par les présentes CGV.
+          </p>
+          <div className="border rounded p-3">
+            <p className="mb-1">À l’attention de GOLI Gore Gbaka</p>
+            <p>{ADRESSE}</p>
+            <p className="mb-1">Date : ______________________</p>
+            <p className="mb-1">
+              Je notifie par la présente la rétractation du contrat portant sur
+              le bien ci-dessous :
+            </p>
+            <ul>
+              <li>Commande du (indiquer la date) : ____________________</li>
+              <li>Numéro de la commande : ____________________</li>
+              <li>Nom du Client : ____________________</li>
+              <li>Adresse du Client : ____________________</li>
+            </ul>
+            <p className="mb-0">
+              Signature du Client (uniquement en cas de notification du présent
+              formulaire sur papier) :
+            </p>
+          </div>
+        </Article>
       </div>
     </section>
   );
 }
+ 

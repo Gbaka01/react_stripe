@@ -18,6 +18,8 @@ import Conditions from "./pages/Conditions";
 import Contact from "./pages/Contact";
 import Apropos from "./pages/Apropos";
 import Galerie from './pages/Galerie';
+import NotFound from "./pages/NotFound";
+
 export default function App() {
 
   return (
@@ -25,6 +27,7 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Routes>
+      <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Accueil />}/>         
         <Route path="/galerie" element={<Galerie />}/>
         <Route path="/panier" element={<Panier />}/>

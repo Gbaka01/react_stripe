@@ -1,8 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 body {
-  background-image: url("https://panoramadelart.com/sites/default/files/2023-01/a-portrait-madelaine-benoist.jpg");
+  margin: 0;
+  min-height: 100vh;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("/l-odalisque-blonde.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: "Dancing Script", cursive;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+  font-weight: 500;
+  font-style: italic;
 }
